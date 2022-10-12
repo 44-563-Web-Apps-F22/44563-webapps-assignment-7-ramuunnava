@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html> <head> <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: fuchsia;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: red; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: black;
+	  }
+	}
+</style></head>
+
+<body>
+            <h2>Ramu Unnava build a cycler</h2>
+        
+            <label for="name">Input Element: </label><input id="name" type="text"></input><br><br>
+        
+            <div class="flex-container" id="target">
+                <div class="cycler">cycler1</div>   
+                <div class="cycler">cycler2</div>  
+                <div class="cycler">cycler3</div>  
+            </div>
+          
+              
+            <button style="color: blue;background-color: greenyellow; width:70px; height:50px; box-shadow: #f1f1f1;" onclick="makeNewDiv()">Add value</button>
+            <button type="button" class="btn btn-primary" onclick="get()" style="color:blue; background-color: greenyellow; width:70px; height:50px;" >get</button>
+            <button type="button" class="btn btn-primary" onclick="spin()" style="color: blue; background-color: greenyellow;text-align: center;width:70px; height:50px;">spin</button>
+    
+        </body>
+        <script>
+            function makeNewDiv(){
+                
+                let element = document.createElement("div");
+                element.innerHTML = document.getElementById("name").value;
+                element.className = "cycler";
+        
+                
+                document.getElementById('target').appendChild(element)
+                
+            }
+            function get() {
+                var cyclerItems = document.getElementsByClassName('cycler');
+                if (cyclerItems.length > 0) {
+                    cyclerItems[cyclerItems.length - 1].remove();
+                }
+        
+            }
+            function spin() {
+                let cyclerItems = document.getElementsByClassName('cycler');
+		let cyclerSize = cyclerItems.length;
+
+			if(cyclerSize == 0 || cyclerSize==1){
+			 	alert("No Items in the cycler to spin");
+				return;
+			} 
+		else
+        {
+            let RemovedItem = cyclerItems[cyclerItems.length-1]
+                    cyclerItems[cyclerItems.length - 1].remove();
+                    document.getElementById('target').insertBefore(RemovedItem,document.getElementById('target').firstChild);
+        }
+
+
+
+			}
+        </script>
+</html>	
