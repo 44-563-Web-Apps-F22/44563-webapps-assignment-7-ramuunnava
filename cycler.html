@@ -37,22 +37,17 @@
     
         </body>
         <script>
-            function makeNewDiv(){
-                
+            function makeNewDiv(){   
                 let element = document.createElement("div");
                 element.innerHTML = document.getElementById("name").value;
-                element.className = "cycler";
-        
-                
-                document.getElementById('target').appendChild(element)
-                
+                element.className = "cycler"; 
+                document.getElementById('target').appendChild(element)  
             }
             function get() {
                 var cyclerItems = document.getElementsByClassName('cycler');
                 if (cyclerItems.length > 0) {
                     cyclerItems[cyclerItems.length - 1].remove();
                 }
-        
             }
             function spin() {
                 let cyclerItems = document.getElementsByClassName('cycler');
@@ -68,9 +63,17 @@
                     cyclerItems[cyclerItems.length - 1].remove();
                     document.getElementById('target').insertBefore(RemovedItem,document.getElementById('target').firstChild);
         }
-
-
-
 			}
+
+        function swap(){
+        let cyclerItems = document.getElementsByClassName('cycler');
+        let cyclersSize = cyclerItems.length;
+        let nodeA = cyclerItems[Math.round(Math.random() * (cyclersSize-1))]
+        let nodeB = cyclerItems[Math.round(Math.random() * (cyclersSize-1))]
+        const parentA = nodeA.parentNode;
+        const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;        
+        nodeB.parentNode.insertBefore(nodeA, nodeB);        
+        parentA.insertBefore(nodeB, siblingA);
+    }
         </script>
 </html>	
